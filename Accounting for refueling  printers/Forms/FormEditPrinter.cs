@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Accounting_for_refueling__printers.Forms
@@ -64,7 +65,7 @@ namespace Accounting_for_refueling__printers.Forms
                         $"where Printer_ID = {textBox1.Text}", sqlConnection);
                     if (Update1.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("Вставка успешно выполнена");
+                        MessageBox.Show("Изменение успешно выполнено");
                         FormMainMenu.SelfRef.UpdatePrinter();
                         textBox1.Text = "";
                         textBox2.Text = "";
@@ -95,8 +96,8 @@ namespace Accounting_for_refueling__printers.Forms
             {
                 SqlCommand Edit1 = new SqlCommand($"Select Кабинет from Printer where Printer_ID ={textBox1.Text}", sqlConnection);
                 SqlCommand Edit2 = new SqlCommand($"Select Операции from Printer where Printer_ID ={textBox1.Text}", sqlConnection);
-                SqlCommand Edit3 = new SqlCommand($"Select Модель from Printer where Printer_ID ={textBox1.Text}", sqlConnection);
-                SqlCommand Edit4 = new SqlCommand($"Select Модель from Cartridge where (Select Картридж from Printer where Printer_ID = {textBox1.Text})", sqlConnection);
+                SqlCommand Edit3 = new SqlCommand($"Select Printer.Модель from Printer where Printer_ID ={textBox1.Text}", sqlConnection);
+                SqlCommand Edit4 = new SqlCommand($"Select Cartridge.Модель from Cartridge where Cartridge_ID = (Select Картридж from Printer where Printer_ID = {textBox1.Text})", sqlConnection);
                 
                 SqlCommand Edit6 = new SqlCommand($"Select Дата from Printer where Printer_ID ={textBox1.Text}", sqlConnection);
                 textBox2.Text = Edit1.ExecuteScalar().ToString();
@@ -146,6 +147,26 @@ namespace Accounting_for_refueling__printers.Forms
             comboBox1.ForeColor = ThemeColor.PrimaryColor;
             comboBox2.ForeColor = ThemeColor.PrimaryColor;
 
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (Regex.IsMatch(textBox2.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Только цифры", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                textBox2.Text = textBox2.Text.Remove(textBox2.Text.Length - 1);
+                textBox2.SelectionStart = textBox2.TextLength;
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (Regex.IsMatch(textBox1.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Только цифры", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1);
+                textBox1.SelectionStart = textBox1.TextLength;
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -122,5 +123,14 @@ SqlCommand command1 = new SqlCommand($"Select GPUMOdel_ID from GPUModel where Mo
 
         }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (Regex.IsMatch(textBox1.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Только цифры", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1);
+                textBox1.SelectionStart = textBox1.TextLength;
+            }
+        }
     }
 }

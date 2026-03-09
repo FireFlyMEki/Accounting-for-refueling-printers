@@ -43,9 +43,8 @@ namespace Accounting_for_refueling__printers.Forms
             {
                 var LoginUser = textLogin.Text;
                 var PasswordUser = textPassword.Text;
-                SqlCommand Acess = new SqlCommand(@"Select * from Account where LoginUser= @ul and PasswordUser= @up ", sqlConnection);
+                SqlCommand Acess = new SqlCommand(@"Select * from Account where LoginUser= @ul", sqlConnection);
                 Acess.Parameters.Add("@ul", sqlDbType: SqlDbType.VarChar).Value = LoginUser;
-                Acess.Parameters.Add("@up", sqlDbType: SqlDbType.VarChar).Value = PasswordUser;
                 if (Acess.ExecuteScalar()!=null)
                 {
                     MessageBox.Show("Данный аккаунт уже занят");
@@ -54,7 +53,7 @@ namespace Accounting_for_refueling__printers.Forms
                 {
                     SqlCommand AddAccount = new SqlCommand("INSERT INTO [Account](LoginUser,PasswordUser,RightAcess) VALUES(@LoginUser,@PasswordUser,@RightAcess)", sqlConnection);
                     AddAccount.Parameters.AddWithValue("LoginUser",LoginUser);
-                    AddAccount.Parameters.AddWithValue("PasswordUser",PasswordUser);
+                    AddAccount.Parameters.AddWithValue("PasswordUser",Hashing.Hash(PasswordUser));
                     AddAccount.Parameters.AddWithValue("RightAcess",0);
                     if (AddAccount.ExecuteNonQuery() == 1)
                     {

@@ -92,6 +92,7 @@ namespace Accounting_for_refueling__printers.Forms
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(121, 27);
             this.textBox1.TabIndex = 1;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // btnOutput
             // 
@@ -202,7 +203,7 @@ namespace Accounting_for_refueling__printers.Forms
             // 
             this.textBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox3.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox3.Location = new System.Drawing.Point(360, 153);
+            this.textBox3.Location = new System.Drawing.Point(360, 120);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(121, 27);
             this.textBox3.TabIndex = 36;
@@ -233,7 +234,7 @@ namespace Accounting_for_refueling__printers.Forms
             // 
             this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox2.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox2.Location = new System.Drawing.Point(360, 120);
+            this.textBox2.Location = new System.Drawing.Point(361, 87);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(121, 27);
             this.textBox2.TabIndex = 33;
@@ -389,10 +390,11 @@ namespace Accounting_for_refueling__printers.Forms
             // 
             this.textBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBox4.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox4.Location = new System.Drawing.Point(360, 87);
+            this.textBox4.Location = new System.Drawing.Point(360, 153);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(121, 27);
             this.textBox4.TabIndex = 23;
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // monitor1TableAdapter
             // 

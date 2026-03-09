@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -25,10 +26,11 @@ namespace Accounting_for_refueling__printers
             Thread.Sleep(5000);
             TopMost = true;
             InitializeComponent();
+            Console.WriteLine(Hashing.Hash("admin"));
             t.Abort(t);
         }
 
-
+            
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
@@ -56,27 +58,36 @@ namespace Accounting_for_refueling__printers
 
         private void btnInput_Click(object sender, EventArgs e)
         {
-            var LoginUser = textLogin.Text;
-            var PasswordUser = textPassword.Text;
-            //1
-            SqlCommand Acess = new SqlCommand(@"Select * from Account where LoginUser= @ul and PasswordUser= @up " ,sqlConnection);
-            Acess.Parameters.Add("@ul", sqlDbType: SqlDbType.VarChar).Value = LoginUser;
-            Acess.Parameters.Add("@up", sqlDbType: SqlDbType.VarChar).Value = PasswordUser;
-            //2
-            SqlCommand RightAcess = new SqlCommand(@"Select RightAcess from Account where LoginUser= @ul and PasswordUser= @up ", sqlConnection);
-            RightAcess.Parameters.Add("@ul", sqlDbType: SqlDbType.VarChar).Value = LoginUser;
-            RightAcess.Parameters.Add("@up", sqlDbType: SqlDbType.VarChar).Value = PasswordUser;
-
-            if (Acess.ExecuteScalar()!= null)
+            if (textLogin.Text != null || textPassword != null)
             {
-                InputOnSystem(RightAcess.ExecuteScalar().ToString());
+                var LoginUser = textLogin.Text;
+                var PasswordUser = textPassword.Text;
+                //1
+
+                //2
+               
+
+
+                if (AuthorizeUser(textLogin.Text, textPassword.Text))
+                {
+                     SqlCommand RightAcess = new SqlCommand(@"Select RightAcess from Account where LoginUser= @ul and PasswordUser= @up ", sqlConnection);
+                RightAcess.Parameters.Add("@ul", sqlDbType: SqlDbType.VarChar).Value = LoginUser;
+                RightAcess.Parameters.Add("@up", sqlDbType: SqlDbType.VarChar).Value = Hashing.Hash(PasswordUser);
+                        InputOnSystem(RightAcess.ExecuteScalar().ToString());
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Заполните все поля", "Ошибка");
+                }
 
             }
-            else
-            {
-                MessageBox.Show("Неверный логин или пароль","Предупреждение",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
-            }
+
            
+
+          
+
         }
 
         private void panelHeader_MouseDown(object sender, MouseEventArgs e)
@@ -88,6 +99,36 @@ namespace Accounting_for_refueling__printers
         private void btnExit_Click(object sender, EventArgs e)
         {
              Application.Exit();
+        }
+        public bool AuthorizeUser(string login, string password)
+        {
+           
+                bool isAuthorized = false;
+          
+               
+ 
+                    using (SqlCommand command = new SqlCommand($"Select Account_ID, LoginUser, PasswordUser from Account where [LoginUser] = '{login}' and [PasswordUser] = '{Hashing.Hash(password)}'", sqlConnection))
+                    {
+                        if (Convert.ToInt32(command.ExecuteScalar()) > 0)
+                        {
+                            isAuthorized = true;
+                            
+                            MessageBox.Show("Вход выполнен", "Успех");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Логин или пароль неверный", "Ошибка входа");
+                        }
+                    }
+                
+                return isAuthorized;
+         
+
+        }
+
+        private void panelAutorization_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

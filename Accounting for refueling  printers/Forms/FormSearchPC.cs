@@ -17,7 +17,7 @@ namespace Accounting_for_refueling__printers.Forms
         private Form activeForm;
 #pragma warning restore CS0649 // Полю "FormSearchPC.activeForm" нигде не присваивается значение, поэтому оно всегда будет иметь значение по умолчанию null.
 
-        private SqlConnection sqlConnection = null;
+        private SqlConnection sqlConnection = null; 
         public FormSearchPC()
         {
             InitializeComponent();
@@ -277,7 +277,7 @@ namespace Accounting_for_refueling__printers.Forms
                 worksheet = workbook.ActiveSheet;
                 worksheet.Name = "Exported from gridview";
                 //Fill Excel.
-                worksheet.Cells[1, 1] = $"МЕСТО ДЛЯ ЗАПОЛНЕНИЕ ШАПКИ";
+                worksheet.Cells[1, 1] = $"Учёт компьютеров";
 
                 for (int i = 2; i < dataGridView1.Columns.Count + 1; i++)
                 {
@@ -319,6 +319,11 @@ namespace Accounting_for_refueling__printers.Forms
 
                 MessageBox.Show(ex.Message, "Ошибка экспорта данных Excel таблицу");
             }
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

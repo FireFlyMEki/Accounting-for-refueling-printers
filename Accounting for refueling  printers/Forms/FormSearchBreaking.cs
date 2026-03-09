@@ -203,7 +203,7 @@ namespace Accounting_for_refueling__printers.Forms
                     }
 
                     filter = filter.Remove(filter.Length - 4);
-                    MessageBox.Show(filter);
+
 
                     SqlDataAdapter sqlDataAdapter = new SqlDataAdapter($"Select Breaking_ID as 'Идентификатор', PC_ID as 'Идентификатор ПК', Дата,Кабинет,ФИО_МОЛ as 'ФИО материально ответственного лица', Монитор,Диск,CPU as 'Процессор',GPU as 'Видеокарта',RAM as 'Оперетивная память',Причина from Breaking where {filter}", sqlConnection);
 
@@ -274,7 +274,7 @@ namespace Accounting_for_refueling__printers.Forms
                     filter += $" Дата between '{date.Year}.{date.Month}.{date.Day}' and '{date1.Year}.{date1.Month}.{date1.Day}' and ";
                     filter = filter.Remove(filter.Length - 4);
 
-                    SqlDataAdapter sqlDataAdapter = new SqlDataAdapter($"Select Breaking_ID as 'Идентификатор', PC_ID as 'Идентификатор ПК', Дата,Кабинет,ФИО_МОЛ as 'ФИО материально ответственного лица', Монитор,Диск,CPU as 'Процессор',GPU as 'Видеокарта',RAM as 'Оперетивная память',Причина from Breaking where {filter}", sqlConnection);
+                    SqlDataAdapter sqlDataAdapter = new SqlDataAdapter($"Select Breaking_ID as 'Идентификатор', PC_ID as 'Идентификатор ПК', Дата,Кабинет,ФИО_МОЛ as 'ФИО материально ответственного лица', Монитор,Диск,CPU as 'Процессор',GPU as 'Видеокарта',RAM as 'Оперативная память',Причина from Breaking where {filter}", sqlConnection);
                     DataSet dataSet = new DataSet();
                     sqlDataAdapter.Fill(dataSet);
                     dataGridView1.DataSource = dataSet.Tables[0];

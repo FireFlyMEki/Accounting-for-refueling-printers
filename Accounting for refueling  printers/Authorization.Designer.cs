@@ -57,6 +57,7 @@ namespace Accounting_for_refueling__printers
             this.panelAutorization.Name = "panelAutorization";
             this.panelAutorization.Size = new System.Drawing.Size(715, 440);
             this.panelAutorization.TabIndex = 1;
+            this.panelAutorization.Paint += new System.Windows.Forms.PaintEventHandler(this.panelAutorization_Paint);
             // 
             // panelHeader
             // 
@@ -100,11 +101,11 @@ namespace Accounting_for_refueling__printers
             // labellogin
             // 
             this.labellogin.AutoSize = true;
-            this.labellogin.Font = new System.Drawing.Font("Roboto Cn", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labellogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labellogin.ForeColor = System.Drawing.Color.White;
             this.labellogin.Location = new System.Drawing.Point(204, 176);
             this.labellogin.Name = "labellogin";
-            this.labellogin.Size = new System.Drawing.Size(97, 38);
+            this.labellogin.Size = new System.Drawing.Size(98, 37);
             this.labellogin.TabIndex = 0;
             this.labellogin.Text = "Логин";
             // 
@@ -113,7 +114,7 @@ namespace Accounting_for_refueling__printers
             this.btnInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.btnInput.FlatAppearance.BorderSize = 2;
             this.btnInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInput.Font = new System.Drawing.Font("Roboto Cn", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnInput.ForeColor = System.Drawing.Color.White;
             this.btnInput.Location = new System.Drawing.Point(307, 301);
             this.btnInput.Name = "btnInput";
@@ -125,29 +126,29 @@ namespace Accounting_for_refueling__printers
             // 
             // textPassword
             // 
-            this.textPassword.Font = new System.Drawing.Font("Roboto Bk", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textPassword.Location = new System.Drawing.Point(307, 239);
             this.textPassword.Name = "textPassword";
             this.textPassword.PasswordChar = '*';
-            this.textPassword.Size = new System.Drawing.Size(155, 27);
+            this.textPassword.Size = new System.Drawing.Size(155, 26);
             this.textPassword.TabIndex = 2;
             // 
             // textLogin
             // 
-            this.textLogin.Font = new System.Drawing.Font("Roboto Bk", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textLogin.Location = new System.Drawing.Point(307, 185);
             this.textLogin.Name = "textLogin";
-            this.textLogin.Size = new System.Drawing.Size(155, 27);
+            this.textLogin.Size = new System.Drawing.Size(155, 26);
             this.textLogin.TabIndex = 1;
             // 
             // labelpassword
             // 
             this.labelpassword.AutoSize = true;
-            this.labelpassword.Font = new System.Drawing.Font("Roboto Cn", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelpassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelpassword.ForeColor = System.Drawing.Color.White;
             this.labelpassword.Location = new System.Drawing.Point(186, 230);
             this.labelpassword.Name = "labelpassword";
-            this.labelpassword.Size = new System.Drawing.Size(115, 38);
+            this.labelpassword.Size = new System.Drawing.Size(124, 37);
             this.labelpassword.TabIndex = 0;
             this.labelpassword.Text = "Пароль";
             // 
@@ -155,6 +156,7 @@ namespace Accounting_for_refueling__printers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(715, 440);
             this.Controls.Add(this.panelAutorization);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

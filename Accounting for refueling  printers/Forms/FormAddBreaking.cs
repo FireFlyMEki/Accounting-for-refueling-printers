@@ -157,7 +157,7 @@ namespace Accounting_for_refueling__printers.Forms
             }
             else
                 {
-                    MessageBox.Show("Выберите хотябы одну поломку", "Предуприждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Выберите хотя бы одну поломку", "Предуприждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 }
         }
@@ -173,6 +173,36 @@ namespace Accounting_for_refueling__printers.Forms
             textBox3.Text = Edit3.ExecuteScalar().ToString();
             textBox4.Text = Edit4.ExecuteScalar().ToString();
             textBox5.Text = Edit5.ExecuteScalar().ToString();
+        }
+        void LoadTheme()
+        {
+            foreach (Control btns in this.Controls)
+            {
+                if (btns.GetType() == typeof(Button))
+                {
+                    Button btn = (Button)btns;
+                    btn.BackColor = ThemeColor.PrimaryColor;
+                    btn.ForeColor = Color.White;
+                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                }
+            }
+
+            label2.ForeColor = ThemeColor.PrimaryColor;
+            label3.ForeColor = ThemeColor.PrimaryColor;
+            label4.ForeColor = ThemeColor.PrimaryColor;
+            label6.ForeColor = ThemeColor.PrimaryColor;
+            label7.ForeColor = ThemeColor.PrimaryColor;
+            label8.ForeColor = ThemeColor.PrimaryColor;
+            label9.ForeColor = ThemeColor.PrimaryColor;
+            dateTimePicker1.CalendarForeColor = ThemeColor.PrimaryColor;
+            textBox1.ForeColor = ThemeColor.PrimaryColor;
+            checkBox1.ForeColor = ThemeColor.PrimaryColor;
+            checkBox2.ForeColor = ThemeColor.PrimaryColor;
+            checkBox3.ForeColor = ThemeColor.PrimaryColor;
+            checkBox4.ForeColor = ThemeColor.PrimaryColor;
+            checkBox5.ForeColor = ThemeColor.PrimaryColor;
+
+
         }
     }
 }

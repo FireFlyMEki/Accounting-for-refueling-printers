@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -74,13 +73,7 @@ namespace Accounting_for_refueling__printers
         //Hide Sub Menu when click on another Sub Menu.
         public void hideSubMenu()
         {
-            if (PanelPrinterSubMenu.Visible == true)
-            {
-                if (activeForm != null)
-                    activeForm.Close();
-                btnCloseChildForm.Visible = false;
-                PanelPrinterSubMenu.Visible = false;
-            }
+           
             if (PanelPCSubMenu.Visible == true)
             {
                 if (activeForm != null)
@@ -448,8 +441,7 @@ namespace Accounting_for_refueling__printers
             OpenChildForm(new Forms.FormSearchPrinter(), sender);
             btnCloseChildForm.Visible = true;
             btnDelete.Visible = false;
-             btnPrint.Visible = false;
-
+            btnPrint.Visible = false;
         }
         private void btnEddit_Click(object sender, EventArgs e)
         {
@@ -464,6 +456,10 @@ namespace Accounting_for_refueling__printers
             if (activeForm != null)
                 activeForm.Close();
             Reset();
+            if (NameActiveForm.NameTable=="Printer"||NameActiveForm.NameTable=="PC"||NameActiveForm.NameTable=="Breaking")
+            {
+                btnPrint.Visible = true;
+            }
 
 
         }
@@ -562,9 +558,9 @@ namespace Accounting_for_refueling__printers
             if (dialogResult == DialogResult.OK)
             {
                 if (Cell >= 0)
-                {
-                    SqlCommand Delete = new SqlCommand($"Delete from {NameActiveForm.NameTable} where {NameActiveForm.NameIdTable} = {Cell}", sqlConnection);
-                    Delete.ExecuteNonQuery();
+                { 
+                    SqlCommand Delete = new SqlCommand($"Delete from {NameActiveForm.NameTable} where {NameActiveForm.NameIdTable} = {Cell}", sqlConnection);               
+                    Delete.ExecuteNonQuery();                                                        
                     NameActiveForm.Update(NameActiveForm.NameTable);
                 }
                 else
@@ -580,7 +576,7 @@ namespace Accounting_for_refueling__printers
 
         private void btnInfo_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("\"Автоматизированный учёт компьютерной техники\" v1.0\nРазработал: Балабанов Артём Андреевич\nE-mail: artem.balabanov.2018@gmail.com", "О программе", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("\"Автоматизированный учёт компьютерной техники\" v1.0\nРазработал: Сафончик Дмитрий Юрьевич\nE-mail: safon200150@gmail.com", "О программе", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnPrinters_Click(object sender, EventArgs e)
@@ -596,7 +592,7 @@ namespace Accounting_for_refueling__printers
             UpdatePrinter();
             lblTittle.Text = "Принтеры";
             NameActiveForm.NameForm = "Принтеры";
-            NameActiveForm.NameTable = "Printers";
+            NameActiveForm.NameTable = "Printer";
             NameActiveForm.NameIdTable = "Printer_ID";
 
         }
@@ -645,9 +641,9 @@ namespace Accounting_for_refueling__printers
             ShowSubMenu(PanelOCSubMenu);
             dataGridView1.Visible = true;
             UpdateOC();
-            lblTittle.Text = "Операционные системы";
-            NameActiveForm.NameTable = "Операционные системы";
-            NameActiveForm.NameForm = "OC";
+            lblTittle.Text = "Операционные системы"; 
+            NameActiveForm.NameForm = "Операционные системы";
+            NameActiveForm.NameTable = "OC"; 
             NameActiveForm.NameIdTable = "OC_ID";
 
 

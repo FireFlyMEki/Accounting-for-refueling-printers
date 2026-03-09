@@ -51,8 +51,8 @@ namespace Accounting_for_refueling__printers.Forms
                 {
                     SqlCommand Update = new SqlCommand($"Update Account SET " +
                        $"LoginUser = N'{textBox2.Text}'," +
-                       $"PasswordUser = N'{textBox3.Text}' " +
-                       $" where Cartridge_ID = {textBox1.Text}", sqlConnection);
+                       $"PasswordUser = N'{Hashing.Hash(textBox3.Text)}' " +
+                       $" where Account_ID = {textBox1.Text}", sqlConnection);
                     if (Update.ExecuteNonQuery() == 1)
                     {
                         MessageBox.Show("Вставка успешно выполнена");

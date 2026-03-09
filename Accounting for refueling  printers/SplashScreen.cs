@@ -16,5 +16,10 @@ namespace Accounting_for_refueling__printers
         {
             InitializeComponent();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
